@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style type="text/css">
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            input {
+                width: 100%;
+            }
+
+            .rotate {
+                -webkit-animation-name: spin;
+                -webkit-animation-duration: 3s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-direction: alternate;
+                animation-name: spin;
+                animation-duration: 3s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
+
+            #scene {
+                position: relative;
+                top: 60px;
+                text-align: center;
+            }
+
+            #words span {
+                border: 1px solid #ccc;
+                background: rgba(255,255,155,0.8);
+                text-align: center;
+                font-size: 30px;
+                -webkit-box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
+                box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
+                position: absolute;
+            }
+
+            #words span:nth-child(1) { left: 45%; top: 0px; }
+            #words span:nth-child(2) { left: 25%; top: 100px; }
+            #words span:nth-child(3) { left: 65%; top: 100px; }
+            #words span:nth-child(4) { left: 10%; top: 200px; }
+            #words span:nth-child(5) { left: 45%; top: 200px; }
+            #words span:nth-child(6) { left: 80%; top: 200px; }
+
+        </style>
+    </head>
+    <body>
+        <h1>ViewModel initial issue Demo</h1>
+
+        <div id="control" data-bind="route: message">
+
+            <button  data-bind="click:$data.createViewModels">Click to Create 100 View Models every 2 seconds </button>
+
+            <br> <br> <br> 
+                        
+             <button  data-bind="click:$data.updateViewModels">Click to update the view model value only every 2 seconds </button>
+             
+             <br> <br>
+
+            <button  data-bind="click:$data.reBindAllTheTime">Click to switch bind of test1 and test2 every 2 seconds </button>
+             
+             <br> <br>
+             
+             
+           <button  data-bind="click:$data.createViewModelsNotBinding">Just create 200 view models without bind </button>
+             <br> <br>
+            <button  data-bind="click:$data.cleanUp">CleanUp Unbind for thread 4</button>
+            
+            <br>
+<!--            <a href="#/Start">Click here to start thread4 by Hash Url</a>-->
+        </div>
+
+
+
+
+
+        <div id="thread4">
+            <h3>Testing DOM</h3>
+            <br> It will create 100 view models every 2 second and replace the original VM array.
+           
+            <span data-bind="text:$data.currentTime"></span>
+        </div>
+
+        
+        
+        <div id="thread5">
+            <h3> Testing DOM2</h3>
+            <span data-bind="text:$data.currentTime"></span>
+            
+             <br> It just update the property value in the VM
+             <br>
+             
+        </div>
+        
+        
+          <div id="rebind">
+            <h3> Testing rebind</h3>
+            <span data-bind="text:$data.currentTime"></span>
+            
+             <br> Only rebind the test1 or  test2 every 2 second
+             <br>
+             I am <span  data-bind="text:$data.name"></span> 
+             <br>
+             
+        </div>
+        
+        <!-- ${browser.bootstrap} -->
+<!--        <script type='text/javascript' src='http://getfirebug.com/releases/lite/latest/firebug-lite-debug.js'></script>-->
+    </body>
+</html>
